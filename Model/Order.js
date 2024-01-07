@@ -6,7 +6,7 @@ const orderSchema = new Schema({
     require: true,
   },
   mobile: {
-    type: Number,
+    type: String,
     require: true,
   },
   address: {
@@ -22,10 +22,6 @@ const orderSchema = new Schema({
     require: true,
   },
   instruction: {
-    type: String,
-    require: true,
-  },
-  orderId: {
     type: String,
     require: true,
   },
@@ -60,7 +56,12 @@ const orderSchema = new Schema({
     require: true,
   },
   deliveryMan: {
-    type: [String],
+    type: [
+      {
+        name: String,
+        mobileNumber: String,
+      },
+    ],
     require: true,
   },
   orderStatus: {
@@ -68,7 +69,7 @@ const orderSchema = new Schema({
     require: true,
   },
   paymentStatus: {
-    type: Boolean,
+    type: String,
     require: true,
   },
   confirmationCode: {

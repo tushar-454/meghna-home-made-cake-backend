@@ -1,5 +1,5 @@
 const Comment = require('../Model/Comment');
-const { all } = require('../Routes');
+const Order = require('../Model/Order');
 
 /**
  * create a comment api which want name,comment,image from user
@@ -36,7 +36,54 @@ const getcomments = async (req, res, next) => {
   }
 };
 
+/**
+ * this api help to create a order from user
+ */
+const createorder = async (req, res, next) => {
+  try {
+    const {
+      name,
+      mobile,
+      address,
+      date,
+      wishText,
+      instruction,
+      orderItem,
+      deliveryCharge,
+      totalMoney,
+      discount,
+      nitTotal,
+    } = req.body;
+    const newOrder = new Order({
+      name,
+      mobile,
+      address,
+      date,
+      wishText,
+      instruction,
+      orderItem,
+      deliveryCharge,
+      totalMoney,
+      discount,
+      nitTotal,
+      paymentMethod: 'cod',
+      deliveryMan: {
+        name: '',
+        mobileNumber: '',
+      },
+      orderStatus: 'pending',
+      paymentStatus: 'unpaid',
+      confirmationCode: Math.floor(Math.random() * 1000),
+    });
+    await newOrder.save();
+    res.status(200).json({ message: 'success' });
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports = {
   createcomment,
   getcomments,
+  createorder,
 };
