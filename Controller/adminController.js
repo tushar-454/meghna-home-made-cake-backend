@@ -1,15 +1,36 @@
+const Cake = require('../Model/Cakes');
+
 /**
  * here getAll cakes get all cakes from database
  */
-const getAllCakes = (req, res, next) => {
-  //
+const getAllCakes = async (req, res, next) => {
+  try {
+    const allcakes = await Cake.find();
+    res.status(200).json({ message: 'success', data: allcakes });
+  } catch (error) {
+    next(error);
+  }
 };
 
 /**
  * here addacake add a cake in database
  */
 const addaCake = async (req, res, next) => {
-  //
+  try {
+    const { name, description, flavour, price, salePrice, category } = req.body;
+    const cake = new Cake({
+      name,
+      description,
+      flavour,
+      price,
+      salePrice,
+      category,
+    });
+    await cake.save();
+    res.status(201).json({ message: 'success' });
+  } catch (error) {
+    next(error);
+  }
 };
 
 /**
