@@ -1,10 +1,10 @@
 const router = require('express').Router();
-const adminRoutes = require('../Controller/adminController');
+const adminController = require('../Controller/adminController');
 
-router.get('/getallcakes', adminRoutes.getAllCakes);
-router.post('/addacakes', adminRoutes.addaCake);
-router.get('/getallorders', adminRoutes.getAllOrders);
-router.patch('/updateorderinfo', adminRoutes.updateOrderInfo);
-router.patch('/updatecakeinfo/:id', adminRoutes.updateCakeInfo);
+router.get('/getallcakes', adminController.getAllCakes);
+router.post('/addacakes', adminController.addaCake);
+router.get('/getallorders', adminController.getAllOrders);
+router.patch('/updateorderinfo', adminController.updateOrderInfo);
+router.patch('/updatecakeinfo/:id', adminController.updateCakeInfo);
 
 module.exports = router;
