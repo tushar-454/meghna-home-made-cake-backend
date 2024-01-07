@@ -5,6 +5,6 @@ router.get('/getallcakes', adminRoutes.getAllCakes);
 router.post('/addacakes', adminRoutes.addaCake);
 router.get('/getallorders', adminRoutes.getAllOrders);
 router.patch('/updateorderinfo', adminRoutes.updateOrderInfo);
-router.patch('/updatecakeinfo', adminRoutes.updateCakeInfo);
+router.patch('/updatecakeinfo/:id', adminRoutes.updateCakeInfo);
 
 module.exports = router;

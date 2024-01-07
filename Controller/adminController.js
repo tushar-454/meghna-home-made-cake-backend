@@ -51,7 +51,21 @@ const updateOrderInfo = async (req, res, next) => {
  * here updateCakeInfo update cakes object infromation
  */
 const updateCakeInfo = async (req, res, next) => {
-  //
+  try {
+    const id = req.params.id;
+    const { name, description, flavour, price, salePrice, category } = req.body;
+    const cake = await Cake.findById(id);
+    cake.name = name ?? cake.name;
+    cake.description = description ?? cake.description;
+    cake.flavour = flavour ?? cake.flavour;
+    cake.price = price ?? cake.price;
+    cake.salePrice = salePrice ?? cake.salePrice;
+    cake.category = category ?? cake.category;
+    await cake.save();
+    res.status(200).json({ message: 'success', data: cake });
+  } catch (error) {
+    next(error);
+  }
 };
 
 module.exports = {
