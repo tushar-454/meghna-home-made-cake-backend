@@ -1,3 +1,4 @@
+const Cake = require('../Model/Cakes');
 const Comment = require('../Model/Comment');
 const Order = require('../Model/Order');
 
@@ -82,8 +83,21 @@ const createorder = async (req, res, next) => {
   }
 };
 
+/**
+ * here getAll cakes get all cakes from database
+ */
+const getAllCakes = async (req, res, next) => {
+  try {
+    const allcakes = await Cake.find();
+    res.status(200).json({ message: 'success', data: allcakes });
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports = {
   createcomment,
   getcomments,
   createorder,
+  getAllCakes,
 };
