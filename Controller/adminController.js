@@ -1,4 +1,5 @@
 const Cake = require('../Model/Cakes');
+const Order = require('../Model/Order');
 
 /**
  * here getAll cakes get all cakes from database
@@ -36,15 +37,31 @@ const addaCake = async (req, res, next) => {
 /**
  * here getAllOrders orders get all order from database
  */
-const getAllOrders = async (req, res, next) => {
-  //
+const getAllOrders = async (_req, res, next) => {
+  try {
+    const allOrders = await Order.find();
+    res.status(200).json({ message: 'success', data: allOrders });
+  } catch (error) {
+    next(error);
+  }
 };
 
 /**
  * here updateOrderInfo update orders object infromation
  */
 const updateOrderInfo = async (req, res, next) => {
-  //
+  try {
+    const { id } = req.params;
+    const { deliveryMan, orderStatus, paymentStatus } = req.body;
+    const order = await Order.findById(id);
+    order.deliveryMan = deliveryMan ?? order.deliveryMan;
+    order.orderStatus = orderStatus ?? order.orderStatus;
+    order.paymentStatus = paymentStatus ?? order.paymentStatus;
+    await order.save();
+    res.status(200).json({ message: 'success', data: order });
+  } catch (error) {
+    next(error);
+  }
 };
 
 /**

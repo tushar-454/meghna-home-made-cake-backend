@@ -56,12 +56,10 @@ const orderSchema = new Schema({
     require: true,
   },
   deliveryMan: {
-    type: [
-      {
-        name: String,
-        mobileNumber: String,
-      },
-    ],
+    type: {
+      name: String,
+      mobileNumber: String,
+    },
     require: true,
   },
   orderStatus: {
