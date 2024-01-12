@@ -95,9 +95,23 @@ const getAllCakes = async (req, res, next) => {
   }
 };
 
+/**
+ * here getAll cakes get all cakes from database
+ */
+const getCakeByCategory = async (req, res, next) => {
+  try {
+    const { category } = req.query;
+    const allcakes = await Cake.find({ category });
+    res.status(200).json({ message: 'success', data: allcakes });
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports = {
   createcomment,
   getcomments,
   createorder,
   getAllCakes,
+  getCakeByCategory,
 };
