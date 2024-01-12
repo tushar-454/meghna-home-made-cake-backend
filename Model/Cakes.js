@@ -9,6 +9,10 @@ const cakeSchema = new Schema({
     type: String,
     require: true,
   },
+  image: {
+    type: String,
+    require: true,
+  },
   flavour: {
     type: String,
     require: true,

@@ -18,10 +18,12 @@ const getAllCakes = async (req, res, next) => {
  */
 const addaCake = async (req, res, next) => {
   try {
-    const { name, description, flavour, price, salePrice, category } = req.body;
+    const { name, description, image, flavour, price, salePrice, category } =
+      req.body;
     const cake = new Cake({
       name,
       description,
+      image,
       flavour,
       price,
       salePrice,
@@ -70,10 +72,12 @@ const updateOrderInfo = async (req, res, next) => {
 const updateCakeInfo = async (req, res, next) => {
   try {
     const id = req.params.id;
-    const { name, description, flavour, price, salePrice, category } = req.body;
+    const { name, description, image, flavour, price, salePrice, category } =
+      req.body;
     const cake = await Cake.findById(id);
     cake.name = name ?? cake.name;
     cake.description = description ?? cake.description;
+    cake.image = image ?? cake.image;
     cake.flavour = flavour ?? cake.flavour;
     cake.price = price ?? cake.price;
     cake.salePrice = salePrice ?? cake.salePrice;
