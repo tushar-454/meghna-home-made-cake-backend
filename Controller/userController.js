@@ -30,7 +30,7 @@ const createcomment = async (req, res, next) => {
 const getcomments = async (req, res, next) => {
   try {
     const { isAll } = req.query;
-    const allComment = await Comment.find().limit(!!isAll ? null : 8);
+    const allComment = await Comment.find().limit(!!isAll ? null : 6);
     res.status(200).json({ message: 'success', data: allComment });
   } catch (error) {
     next(error);
@@ -96,7 +96,7 @@ const getAllCakes = async (req, res, next) => {
 };
 
 /**
- * here getAll cakes get all cakes from database
+ * here getCakeByCategory cakes get all cakes based on category from database
  */
 const getCakeByCategory = async (req, res, next) => {
   try {
