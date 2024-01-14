@@ -6,5 +6,6 @@ router.post('/addacakes', adminController.addaCake);
 router.get('/getallorders', adminController.getAllOrders);
 router.patch('/updateorderinfo/:id', adminController.updateOrderInfo);
 router.patch('/updatecakeinfo/:id', adminController.updateCakeInfo);
+router.post('/login', adminController.adminCredentials);
 
 module.exports = router;

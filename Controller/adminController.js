@@ -1,3 +1,4 @@
+const Admin = require('../Model/Admin');
 const Cake = require('../Model/Cakes');
 const Order = require('../Model/Order');
 
@@ -89,10 +90,30 @@ const updateCakeInfo = async (req, res, next) => {
   }
 };
 
+/**
+ * adminCredentials for admin panel login
+ */
+const adminCredentials = async (req, res, next) => {
+  try {
+    const { email, password } = req.body;
+    const adminCredentials = await Admin.find();
+    console.log(adminCredentials[0]);
+    const { email: adminEmail, password: adminPassword } = adminCredentials[0];
+    console.log(adminEmail, adminPassword);
+    if (adminEmail === email && adminPassword === password) {
+      res.status(200).json({ message: 'success' });
+    }
+    res.status(200).json({ message: 'wrong' });
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports = {
   getAllCakes,
   addaCake,
   getAllOrders,
   updateOrderInfo,
   updateCakeInfo,
+  adminCredentials,
 };
