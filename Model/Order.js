@@ -28,7 +28,7 @@ const orderSchema = new Schema({
   orderItem: {
     type: [
       {
-        name: String,
+        cakeId: String,
         flavour: String,
         quentity: Number,
       },
