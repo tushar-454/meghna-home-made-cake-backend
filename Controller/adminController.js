@@ -38,6 +38,18 @@ const addaCake = async (req, res, next) => {
 };
 
 /**
+ * delete a cake using cake id
+ */
+const deleteaCake = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    await Cake.deleteOne({ _id: id });
+    res.status(200).json({ message: 'success' });
+  } catch (error) {
+    next(error);
+  }
+};
+/**
  * here getAllOrders orders get all order from database
  */
 const getAllOrders = async (_req, res, next) => {
@@ -111,6 +123,7 @@ const adminCredentials = async (req, res, next) => {
 
 module.exports = {
   getAllCakes,
+  deleteaCake,
   addaCake,
   getAllOrders,
   updateOrderInfo,
